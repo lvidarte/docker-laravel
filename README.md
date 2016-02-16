@@ -6,11 +6,29 @@
 
 ## Run
 
-    # Set www-data group for all files in lavarel root dir
-    sudo chgrp -R www-data .
+    mkdir app
 
-    # Set writable by www-data the storage dir
-    sudo chmod -R 775 storage
+    docker run --rm -p 8000:80 -v $(pwd)/app:/var/www --name laravel laravel-nginx
 
-    # Run docker in your laravel root dir
-    docker run --rm -p 8000:80 -v $(pwd):/var/www/laravel laravel-nginx
+## Install laravel
+
+    docker exec -it laravel composer create-project laravel/laravel app
+
+    sudo chown -R $USER:www-data app
+
+    sudo chmod -R 775 app/storage
+
+## Logs
+
+    docker exec -it laravel bash -c 'tail -f /var/log/nginx/*.log'
+
+## Test installation
+
+    $> curl -s localhost:8000 | grep -i 'laravel 5'
+        <div class="title">Laravel 5</div>
+
+## Testing
+
+    cd app
+
+    vendor/bin/phpunit
