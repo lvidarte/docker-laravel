@@ -2,7 +2,7 @@
 
 ## Build
 
-    docker build -t docker-laravel-nginx .
+    docker build -t laravel-nginx .
 
 ## Run
 
@@ -13,4 +13,4 @@
     sudo chmod -R 775 storage
 
     # Run docker in your laravel root dir
-    docker run --rm -p 8000:80 -v $(pwd):/var/www/laravel --name laravel-nginx docker-laravel-nginx
+    docker run --rm -p 8000:80 -v $(pwd):/var/www/laravel laravel-nginx
