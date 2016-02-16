@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update && \
-    apt-get install -y nginx php5-fpm php5-cli php5-mcrypt git curl && \
+    apt-get install -y nginx php5-fpm php5-cli php5-mcrypt && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
